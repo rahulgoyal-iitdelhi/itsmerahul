@@ -9,10 +9,21 @@
 
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark');
+  // On page load, apply saved mode
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedMode = localStorage.getItem('theme');
+    if (savedMode === 'dark') {
+      document.body.classList.add('dark');
     }
-  </script>
+  });
+
+  function toggleMode() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+</script>
+
 </head>
 
 <body>
